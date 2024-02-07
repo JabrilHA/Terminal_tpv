@@ -1,0 +1,32 @@
+<div th:fragment="cabecera">
+	<header>
+        <div id = "header_izq">
+            <img th:src="@{/images/imagen_cabecera.png}" alt="Imagen" width="80px" height="80px">
+        </div>
+        <div id ="header_der">
+            <h1>Bar Esquina TPV</h1>
+        </div>
+    </header>
+</div>
+
+<div th:fragment="menu">
+	<nav>
+        <ul>
+            <li>
+                <a th:href = "@{/realizar_ticket}" class="enlace">Crear Tickets</a>
+            </li>
+            <li>
+                <a th:href="@{/tickets}" class = "enlace">Ver Tickets</a>
+            </li>
+            <li>
+                <a th:href="@{/administracion_productos}" class = "enlace"> Ver Productos</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div th:fragment="pie">
+	<footer>
+		<p>Designed by: Jabril</p>
+	</footer>
+</div>

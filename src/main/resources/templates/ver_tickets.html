@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+	<link rel="stylesheet" th:href="@{/styles_ver_ticket.css}" />
+	<title>Bar Esquina Tickets</title>
+</head>
+
+<body>
+	<div th:include="plantilla.html::cabecera"></div>
+	<div th:include="plantilla.html::menu"> </div>
+	<main>
+		<section class="tablas_grid">
+			<table class = "tickets">
+				<thead>
+					<tr>
+						<th class="id">ID</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Ver Ticket</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="elemento : ${art_lista_ticket}">
+						<td class="id" th:text="${elemento.id}"></td>
+						<td th:text="${elemento.fecha}"></td>
+						<td th:text="${elemento.hora}"></td>
+						<td>
+							<a class="ver_ticket" th:href="'/detallesTicket/'+${elemento.id}">Ver</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<section class="ticket_ver">
+				<h3 th:text = "${fecha}"></h3>
+				<h3 th:text = "${hora}"></h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="elemento : ${art_lista_ticketProd}">
+							<td th:text="${elemento.producto.nombre}"></td>
+							<td th:text="${elemento.producto.precio}"></td>
+							<td th:text="${elemento.cantidad}"></td>
+							
+						</tr>
+					</tbody>
+				</table>
+				<h3 th:text="${art_total != null ? 'Total: ' + art_total + ' €' : ''}"></h3>
+			</section>
+		</section>
+	</main>
+	<div th:include="plantilla.html::pie"></div>
+</body>
+</html>

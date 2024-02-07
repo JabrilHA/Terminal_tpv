@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+	<link rel="stylesheet" th:href="@{/styles_realizar_ticket.css}" />
+	<title>Bar Esquina Ventas</title>
+</head>
+
+<body>
+	<div th:include="plantilla.html::cabecera"></div>
+	<div th:include="plantilla.html::menu"> </div>
+	<main>
+		<section class="contenedor_grid">
+			<section class="productos">
+				<article th:each="elemento : ${atr_lista_productos}">
+					<a th:href="'/guardarEnTicket/'+${elemento.id}">
+						<h2 th:text="${elemento.nombre}"></h2>
+						<img th:src="@{'images/productos/' + ${elemento.foto}}" alt="">
+						<p th:text="'Precio: ' + ${elemento.precio} + ' €'"></p>
+					</a>
+				</article>
+			</section>
+			<aside class="ticket">
+				<h2 class="titulo2">Ticket</h2>
+				<table  class = "tabla_ticket">
+					<tr>
+						<td class="title">Producto</td>
+						<td class="title">Precio</td>
+						<td class="title">Cantidad</td>
+						<td class="title">Opciones</td>
+					</tr>
+					<tr th:each="elemento : ${atr_datos_en_sesion}">
+						<td th:text="${elemento.key.nombre}"></td>
+						<td th:text="${elemento.key.precio}"></td>
+						<td th:text="${elemento.value}"></td>
+						<td>
+							<a class="botonesAñadir" th:href="'/restarProducto/' +${elemento.key.id}">-</a>
+							<a class="botonesAñadir" th:href="'/añadirProducto/'+${elemento.key.id}">+</a>
+						</td>
+					</tr>
+				</table>
+				<h3 th:text="${total != null ? 'Total: ' + total + ' €' : ''}"></h3>
+				<section class="botones">
+					<a th:href="guardarTicket">Guardar</a>
+					<a th:href="borrarTicket">Cancelar</a>
+				</section>
+			</aside>
+		</section>
+	</main>
+	<div th:include="plantilla.html::pie"></div>
+</body>
+</html>

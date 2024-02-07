@@ -1,0 +1,129 @@
+:root{
+    --alturacabecera: 100px;
+    --alturaPie: 60px;
+    --alturaMenu:50px;
+    --anchuraElemMenu:200px;
+
+    --paddingGeneral:5px;
+
+    --colorRojo:#e63946;
+    --colorBlanco:#f1faee;
+    --colorletras: rgb(239, 239, 253);
+    --colorAzulClaro:#a8dadc;
+    --colorAzulMedio:#457b9d;
+    --colorAzulOscuro:#1d3557;
+
+    --fuenteSerif : "Garamond";
+    --fuenteSans:"Helvetica";
+}
+
+*{
+    margin:0;
+    padding: 0;
+    font-family:var(--fuenteSans);
+}
+
+/*CABECERA*/
+header{
+    background-color: var(--colorAzulMedio);
+    padding: var(--paddingGeneral);
+    height: var(--alturacabecera);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /*esto es en el eje horizontal*/
+    align-items: flex-end; /*esto es en el eje vertical*/
+}
+
+#header_der{
+    width: 100%;
+}
+
+h1{
+    font-family: var(--fuenteSerif);
+    font-size: 60px;
+    color:var(--colorletras);
+}
+
+#header_izq{
+    width: 300px;
+}
+
+#header_izq img{
+    padding: var(--paddingGeneral);
+}
+
+/*BARRA MENU*/
+
+nav{
+    background-color: var(--colorAzulClaro);
+    box-shadow:  0 4px 8px rgba(40, 36, 36, 0.3);
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /*esto es en el eje horizontal*/
+    align-items: flex-end; /*esto es en el eje vertical*/
+}
+
+nav ul li{
+    list-style: none; 
+}
+
+.enlace{
+    display: inline-block;
+    width: var(--anchuraElemMenu);
+    height: var(--alturaMenu);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 20px;
+    color:var(--colorAzulOscuro);
+}
+
+/*hover es para cuando pasas el raton por encima */
+.enlace:hover{
+    background-color: var(--colorAzulOscuro);
+    color: var(--colorBlanco);
+}
+
+/*Cuando el enlace esta visitado*/
+.enlace_menu:visited{
+    color: var(--colorAzulOscuro);
+}
+
+/*Cuando le clickas*/
+.enlace_menu:active{
+    background-color: var(--colorAzulMedio);
+    color: var(--colorletras);
+}
+
+
+/*CUERPO DE LA PAGINA*/
+main{
+    background-color: #9cb7c7;
+    padding: var(--paddingGeneral);
+    min-height: calc(100vh - (var(--alturacabecera) + var(--alturaPie) + var(--alturaMenu) + calc(4 * var(--paddingGeneral)))); /*calc se usa para calcular y 100vh altura vertical 100%*/
+}
+
+
+
+/*PIE DE PAGINA*/
+footer{
+    background-color: var(--colorAzulMedio);
+    height: var(--alturaPie);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+footer p{
+    margin-bottom: var(--paddingGeneral);
+    font-size: 22px;
+    color: var(--colorletras);
+    font-weight: bold;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+	<link rel="stylesheet" th:href="@{/styles_admin.css}" />
+	<title>Bar Esquina Admin</title>
+</head>
+
+<body>
+	<div th:include="plantilla.html::cabecera"></div>
+	<div th:include="plantilla.html::menu"> </div>
+
+	<main>
+		<h3 class="titulo">Introduce un nuevo Producto</h3>
+		<form th:action="@{/guardarProducto}" method="post" enctype="multipart/form-data" th:object="${objeto_entidad}">
+
+			<label for="nombre">Nombre:</label>
+			<input type="text" th:field="*{nombre}" id="nombre" name="nombre" required><br>
+
+			<label for="precio">Precio:</label>
+			<input type="text" th:field="*{precio}" id="precio" name="precio" pattern="\d+(\.\d{1,2})?"
+				title="Ingrese un valor entero o decimal con hasta dos decimales" required><br>
+
+			<label for="foto">Foto:</label>
+			<input type="file" id="foto" name="foto" accept="image/*" required><br>
+			
+			<label for="iva">IVA:</label>
+			<select th:field="*{iva}" id="iva" name="iva" required>
+				<option value="4">4%</option>
+				<option value="10">10%</option>
+				<option value="21">21%</option>
+			</select><br>
+			<button type="submit">Enviar</button>
+		</form>
+		
+		<h2 class="titulo2">Productos Disponibles</h2>
+		<section class="contenedor_grid">
+			<article th:each="elemento : ${atr_lista_productos}">
+				<h2 th:text="${elemento.nombre}"></h2>
+				
+				<img th:src="@{'images/productos/' + ${elemento.foto}}" alt="">
+				
+				<p th:text="'Precio: ' + ${elemento.precio} + ' €'"></p>
+
+				<p th:text="${elemento.iva} + '% IVA' "></p>
+
+				<a th:href="'/modificarProducto/' + ${elemento.id}">Modificar</a>
+			</article>
+		</section>
+	</main>
+	<div th:include="plantilla.html::pie"></div>
+</body>
+</html>

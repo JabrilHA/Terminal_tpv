@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/styles.css}" />
+	<link rel="stylesheet" th:href="@{/styles_admin.css}" />
+	<title>Modificar Producto</title>
+</head>
+
+<body>
+	<div th:include="plantilla.html::cabecera"></div>
+	<main>
+		<h2 class="titulo">Modificar Producto</h2>
+		<form th:action="@{/modificacionProductoCreado}" th:object="${producto}" method="post">
+
+			<label for="nombre">ID</label>
+			<input type="text" name="id" th:field="*{id}" readonly
+				th:value="${producto.isPresent() ? producto.get().id : 'ID no disponible'}" />
+
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" th:field="*{nombre}" required
+				th:value="${producto.isPresent() ? producto.get().nombre : 'Nombre no disponible'}" />
+			<br>
+
+			<label for="nombre">Precio</label>
+			<input type="text" name="precio" th:field="*{precio}" required
+				th:value="${producto.isPresent() ? producto.get().precio : 'Precio no disponible'}" />
+			<br>
+
+			<label for="nombre">IVA</label>
+			<select id="iva" name="iva" th:field="*{iva}" required
+				th:value="${producto.isPresent() ? producto.get().foto : 'Imagen no disponible'}">
+				<option value="4">4%</option>
+				<option value="10">10%</option>
+				<option value="21">21%</option>
+			</select>
+			<br>
+
+			<label for="nombre">Imagen</label>
+			<input type="text" name="foto" th:field="*{foto}" required readonly accept="image/*"
+				th:value="${producto.isPresent() ? producto.get().foto : 'Imagen no disponible'}" />
+
+			<input type="submit" value="Enviar">
+		</form>
+	</main>
+	<div th:include="plantilla.html::pie"></div>
+</body>
+</html>
